@@ -3,9 +3,8 @@
  */
 
 (function(){
-	
-	
-	var app = angular.module('uic',['ui.bootstrap']);
+		
+	var app = angular.module('store',['ui.bootstrap']);
 	
 	app.controller('CarouselDemoCtrl',['$scope',
 	
@@ -26,5 +25,18 @@
 		}
 	]);
 	
+	
+	
+	
+	app.directive('carusal',function(){
+		
+		return {
+		      replace:true,
+		      restrict: 'AE',
+		      templateUrl : 'partials/carusel.html'
+		  }
+		
+	
+	});
 	
 })();

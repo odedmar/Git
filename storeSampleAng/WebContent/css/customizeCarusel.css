@@ -20,12 +20,16 @@
 	margin-top: 20px;
 	box-sizing: border-box;
 	
+	position: absolute;
+    left: 0px;
+    top: 150px;
+	
 }
 
-body{
+/*body{
 	
 	width: 350px;
-}
+}*/
 
 
 
