@@ -1,19 +1,31 @@
 package com.jpa.hibernate;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+
+import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 
 @Entity
@@ -25,15 +37,21 @@ public class Subscriber {
 	private int id;
 	
 	
-	@Embedded
-	@AttributeOverrides({
-	@AttributeOverride (name="street", column=@Column(name="ofiice_street_name")),
-	@AttributeOverride (name="City",  column=@Column(name="ofiihgfce_city_name"))})
-	private Address addr;
-	
 //	@Embedded
-//	private Address addr_office;
+//	@AttributeOverrides({
+//	@AttributeOverride (name="street", column=@Column(name="ofiice_street_name")),
+//	@AttributeOverride (name="City",  column=@Column(name="ofiihgfce_city_name"))})
+//	private Address addr;
 	
+	@ElementCollection
+	@JoinTable(name="SUBSCRIBER_ADDRESS",joinColumns=@JoinColumn(name="ID"))
+//	private Set<Address> addr_office = new HashSet<Address>();
+	//for creating an index of address table
+	
+	
+	@GenericGenerator(name = "hilo-gen", strategy = "hilo")
+	@CollectionId(columns = { @Column(name="ADDRESS_ID") }, generator = "hilo-gen", type = @Type(type="long"))
+	private Collection<Address> addresses = new ArrayList<Address>();
 	
 //	public Address getAddr_office() {
 //		return addr_office;
@@ -41,12 +59,12 @@ public class Subscriber {
 //	public void setAddr_office(Address addr_office) {
 //		this.addr_office = addr_office;
 //	}
-	public Address getAddr() {
-		return addr;
-	}
-	public void setAddr(Address addr) {
-		this.addr = addr;
-	}
+//	public Address getAddr() {
+//		return addr;
+//	}
+//	public void setAddr(Address addr) {
+//		this.addr = addr;
+//	}
 	@Column(name="SUBSCRIBER_NAME")
 	private String name;
 	
@@ -60,8 +78,23 @@ public class Subscriber {
 	
 	
 	
+//	public Set<Address> getAddr_office() {
+//		return addr_office;
+//	}
+//	public void setAddr_office(Set<Address> addr_office) {
+//		this.addr_office = addr_office;
+//	}
+	
+	
+	
 	public Date getCreateTime() {
 		return createTime;
+	}
+	public Collection<Address> getAddresses() {
+		return addresses;
+	}
+	public void setAddresses(Collection<Address> addresses) {
+		this.addresses = addresses;
 	}
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;

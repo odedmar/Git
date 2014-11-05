@@ -32,12 +32,12 @@ public class App
        	Address addr = new Address();
        	
        	addr.setCity("sssss");
-       	sub.setAddr(addr);
+       	sub.getAddresses().add(addr);
        	
-//       	Address addr2 = new Address();
-//       	
-//       	addr2.setCity("rishon");
-//       	sub.setAddr_office(addr2);
+       	Address addr2 = new Address();
+       	
+       	addr2.setCity("rishon");
+       	sub.getAddresses().add(addr2);
        	
        	Session session = factory.openSession();
        	
