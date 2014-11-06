@@ -24,6 +24,8 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -41,14 +43,14 @@ public class Subscriber {
 //	@AttributeOverrides({
 //	@AttributeOverride (name="street", column=@Column(name="ofiice_street_name")),
 //	@AttributeOverride (name="City",  column=@Column(name="ofiihgfce_city_name"))})
-//	private Address addr;
+//	private Address addr
 	
 	@ElementCollection
 	@JoinTable(name="SUBSCRIBER_ADDRESS",joinColumns=@JoinColumn(name="ID"))
 //	private Set<Address> addr_office = new HashSet<Address>();
 	//for creating an index of address table
 	
-	
+	@Fetch(value = FetchMode.JOIN)
 	@GenericGenerator(name = "hilo-gen", strategy = "hilo")
 	@CollectionId(columns = { @Column(name="ADDRESS_ID") }, generator = "hilo-gen", type = @Type(type="long"))
 	private Collection<Address> addresses = new ArrayList<Address>();
