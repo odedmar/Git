@@ -9,6 +9,7 @@ import java.util.Set;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
@@ -44,7 +45,7 @@ public class Subscriber {
 	@Column(name="SUBSCRIBER_NAME")
 	private String name;
 
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user",cascade=CascadeType.PERSIST)
 	private Collection<Address> adresses = new ArrayList<Address>();
 	
 	

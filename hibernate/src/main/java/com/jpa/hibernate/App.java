@@ -43,9 +43,8 @@ public class App
        	Session session = factory.openSession();
        	
        	session.beginTransaction();
-       	session.save(sub);
-       	session.save(addr);
-       	session.save(addr1);
+       	session.persist(sub);
+       
        	
        	session.getTransaction().commit();
        	session.close();
