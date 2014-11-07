@@ -1,5 +1,8 @@
 package com.jpa.hibernate;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
@@ -7,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -27,9 +32,12 @@ public class Address {
 	private String City;
 	
 	
-	@ManyToOne
-	@JoinColumn(name="USER_ID")
-	private Subscriber user;
+	@ManyToMany
+	@JoinTable(name = "oded",joinColumns=@JoinColumn(name="oded_addr"),
+			inverseJoinColumns=@JoinColumn(name="sub_adr"))
+	
+					
+	private Collection<Subscriber> userList = new ArrayList<Subscriber>();
 	
 	
 	public String getStreet() {
@@ -50,12 +58,13 @@ public class Address {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public Subscriber getUser() {
-		return user;
+	public Collection<Subscriber> getUserList() {
+		return userList;
 	}
-	public void setUser(Subscriber user) {
-		this.user = user;
+	public void setUserList(Collection<Subscriber> userList) {
+		this.userList = userList;
 	}
+	
 	
 	
 	

@@ -19,6 +19,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -45,11 +46,8 @@ public class Subscriber {
 	@Column(name="SUBSCRIBER_NAME")
 	private String name;
 
-	@OneToMany(mappedBy="user",cascade=CascadeType.PERSIST)
+	@ManyToMany(mappedBy="userList",cascade=CascadeType.PERSIST)
 	private Collection<Address> adresses = new ArrayList<Address>();
-	
-	
-		
 	
 	public Collection<Address> getAdresses() {
 		return adresses;
