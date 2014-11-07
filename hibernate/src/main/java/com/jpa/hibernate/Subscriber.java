@@ -44,9 +44,7 @@ public class Subscriber {
 	@Column(name="SUBSCRIBER_NAME")
 	private String name;
 
-	@OneToMany
-	@JoinTable(name="USER_ADDRESS",joinColumns=@JoinColumn(name="USER_ID"),
-			   inverseJoinColumns=@JoinColumn(name="ADDRESS_ID"	))
+	@OneToMany(mappedBy="user")
 	private Collection<Address> adresses = new ArrayList<Address>();
 	
 	

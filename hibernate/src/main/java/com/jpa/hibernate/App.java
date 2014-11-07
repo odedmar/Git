@@ -58,6 +58,11 @@ public class App
        	sub = (Subscriber)session.get(Subscriber.class, 1);
        	System.out.println("User name is: " + sub.getName());
        	
+       	System.out.println("The address for the user are:");
+       	for(Address adr: sub.getAdresses()){
+       		System.out.println("The address is: " + adr.getCity());
+       	}
+       	
        	
        	session.getTransaction().commit();
        	session.close();
