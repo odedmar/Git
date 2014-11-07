@@ -20,9 +20,6 @@ public class App
         Subscriber sub = new Subscriber();
         sub.setName("oded");
         
-        sub.setCreateTime(new Date());
-        sub.setString_hib("Transiant example");
-        
         
         Configuration configuration = new Configuration().configure();
        	StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().
@@ -30,19 +27,22 @@ public class App
        	SessionFactory factory = configuration.buildSessionFactory(builder.build());
        	
        	Address addr = new Address();
+       	addr.setCity("Rishn");
+       	addr.setStreet("Rupin 12");
+//       	
+//       	Address addr1 = new Address();
+//       	addr1.setCity("Tel aviv");
+//       	addr1.setStreet("ganani");
+//       	
+    	sub.getAdresses().add(addr);
+//       	sub.getAdresses().add(addr);
        	
-       	addr.setCity("sssss");
-       	sub.getAddresses().add(addr);
-       	
-       	Address addr2 = new Address();
-       	
-       	addr2.setCity("rishon");
-       	sub.getAddresses().add(addr2);
        	
        	Session session = factory.openSession();
        	
        	session.beginTransaction();
        	session.save(sub);
+       	session.save(addr);
        	
        	session.getTransaction().commit();
        	session.close();
@@ -55,12 +55,7 @@ public class App
        	sub = (Subscriber)session.get(Subscriber.class, 1);
        	System.out.println("User name is: " + sub.getName());
        	
-       	for(Address a : sub.getAddresses())
-       	{	
-       		System.out.println("subscriber address list featch  " + a.getCity());
-       	}
        	
-       	sub.getAddresses();
        	session.getTransaction().commit();
        	session.close();
        	

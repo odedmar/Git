@@ -28,6 +28,7 @@
 	 		 <!-- Mapping files -->
 	        
 	        <mapping class="com.jpa.hibernate.Subscriber" />
+	        <mapping class="com.jpa.hibernate.Address" />
 	       
 	    </session-factory>
 	 
