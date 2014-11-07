@@ -20,6 +20,9 @@ public class App
         Subscriber sub = new Subscriber();
         sub.setName("oded");
         
+        Subscriber sub1 = new Subscriber();
+        sub.setName("dana");
+        
         
         Configuration configuration = new Configuration().configure();
        	StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().
@@ -37,8 +40,8 @@ public class App
     	sub.getAdresses().add(addr);
       	sub.getAdresses().add(addr1);
        	
-       	addr.setUser(sub);
-       	addr1.setUser(sub);
+       	addr.getUserList().add(sub);
+       	addr1.getUserList().add(sub);
        	
        	Session session = factory.openSession();
        	
