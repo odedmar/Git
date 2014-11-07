@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 
@@ -23,6 +24,10 @@ public class Address {
 	
 	@Column(name="CITY_NAME")
 	private String City;
+	
+	
+	@ManyToOne
+	private Subscriber user;
 	
 	
 	public String getStreet() {
@@ -43,6 +48,13 @@ public class Address {
 	public void setId(long id) {
 		this.id = id;
 	}
+	public Subscriber getUser() {
+		return user;
+	}
+	public void setUser(Subscriber user) {
+		this.user = user;
+	}
+	
 	
 	
 	

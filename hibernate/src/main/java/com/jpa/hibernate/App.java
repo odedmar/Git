@@ -29,20 +29,23 @@ public class App
        	Address addr = new Address();
        	addr.setCity("Rishn");
        	addr.setStreet("Rupin 12");
-//       	
-//       	Address addr1 = new Address();
-//       	addr1.setCity("Tel aviv");
-//       	addr1.setStreet("ganani");
-//       	
-    	sub.getAdresses().add(addr);
-//       	sub.getAdresses().add(addr);
        	
+       	Address addr1 = new Address();
+       	addr1.setCity("Tel aviv");
+       	addr1.setStreet("ganani");
+       	
+    	sub.getAdresses().add(addr);
+      	sub.getAdresses().add(addr1);
+       	
+       	addr.setUser(sub);
+       	addr1.setUser(sub);
        	
        	Session session = factory.openSession();
        	
        	session.beginTransaction();
        	session.save(sub);
        	session.save(addr);
+       	session.save(addr1);
        	
        	session.getTransaction().commit();
        	session.close();

@@ -26,6 +26,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.IndexColumn;
+
 
 
 @Entity
@@ -43,6 +45,8 @@ public class Subscriber {
 	private String name;
 
 	@OneToMany
+	@JoinTable(name="USER_ADDRESS",joinColumns=@JoinColumn(name="USER_ID"),
+			   inverseJoinColumns=@JoinColumn(name="ADDRESS_ID"	))
 	private Collection<Address> adresses = new ArrayList<Address>();
 	
 	
