@@ -28,7 +28,9 @@
 	 		 <!-- Mapping files -->
 	        
 	        <mapping class="com.jpa.hibernate.Subscriber" />
-	        <mapping class="com.jpa.hibernate.Address" />
+	        <mapping class="com.jpa.hibernate.Car" />
+	        <mapping class="com.jpa.hibernate.PrivateCar" />
+	        <mapping class="com.jpa.hibernate.Bus" />
 	       
 	    </session-factory>
 	 

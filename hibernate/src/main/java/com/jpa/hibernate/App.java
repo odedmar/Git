@@ -29,25 +29,23 @@ public class App
        	applySettings(configuration.getProperties());
        	SessionFactory factory = configuration.buildSessionFactory(builder.build());
        	
-       	Address addr = new Address();
-       	addr.setCity("Rishn");
-       	addr.setStreet("Rupin 12");
+       	Car mersedes = new PrivateCar();
+       	mersedes.setWeells(5);
        	
-       	Address addr1 = new Address();
-       	addr1.setCity("Tel aviv");
-       	addr1.setStreet("ganani");
        	
-    	sub.getAdresses().add(addr);
-      	sub.getAdresses().add(addr1);
+       	Car dan = new Bus();
+       	dan.setLisense(3);
+       	dan.setWeells(8);
        	
-       	addr.getUserList().add(sub);
-       	addr1.getUserList().add(sub);
+       	sub.getCarList().add(dan);
+       	sub.getCarList().add(mersedes);
+       	
        	
        	Session session = factory.openSession();
        	
        	session.beginTransaction();
        	session.persist(sub);
-       
+     
        	
        	session.getTransaction().commit();
        	session.close();
@@ -62,8 +60,8 @@ public class App
        	
        	System.out.println("The address for the user are:");
        	
-       	for(Address adr: sub.getAdresses()){
-       		System.out.println("The address is: " + adr.getCity());
+       	for(Car car: sub.getCarList()){
+       		System.out.println("The weel number is: " + car.getWeells());
        	}
        	
        	

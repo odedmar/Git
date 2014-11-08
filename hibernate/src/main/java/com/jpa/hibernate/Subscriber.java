@@ -46,14 +46,18 @@ public class Subscriber {
 	@Column(name="SUBSCRIBER_NAME")
 	private String name;
 
-	@ManyToMany(mappedBy="userList",cascade=CascadeType.PERSIST)
-	private Collection<Address> adresses = new ArrayList<Address>();
+	@OneToMany(cascade=CascadeType.PERSIST)
+	private Collection<Car> carList = new ArrayList<Car>();
 	
-	public Collection<Address> getAdresses() {
-		return adresses;
+	
+	
+	
+	
+	public Collection<Car> getCarList() {
+		return carList;
 	}
-	public void setAdresses(Collection<Address> adresses) {
-		this.adresses = adresses;
+	public void setCarList(Collection<Car> carList) {
+		this.carList = carList;
 	}
 	public int getId() {
 		return id;
