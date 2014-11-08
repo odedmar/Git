@@ -9,7 +9,9 @@ import javax.persistence.InheritanceType;
 
 
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+
+//This style normalized the in heritance
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Car {
 	
 	@Id

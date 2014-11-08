@@ -49,9 +49,7 @@ public class Subscriber {
 	@OneToMany(cascade=CascadeType.PERSIST)
 	private Collection<Car> carList = new ArrayList<Car>();
 	
-	
-	
-	
+		
 	
 	public Collection<Car> getCarList() {
 		return carList;
