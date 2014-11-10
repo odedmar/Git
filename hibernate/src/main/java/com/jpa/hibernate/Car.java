@@ -1,4 +1,5 @@
 package com.jpa.hibernate;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,7 @@ import javax.persistence.InheritanceType;
 
 //This style normalized the in heritance
 @Inheritance(strategy=InheritanceType.JOINED)
+
 public class Car {
 	
 	@Id
@@ -21,6 +23,9 @@ public class Car {
 	protected long lisense;
 	protected long weells;
 	protected int door;
+	
+	@Column(name = "MANUFACTURE_NAME")
+	protected String manufacturerName;
 	
 	
 	
@@ -47,6 +52,12 @@ public class Car {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getManufacturerName() {
+		return manufacturerName;
+	}
+	public void setManufacturerName(String manufacturerName) {
+		this.manufacturerName = manufacturerName;
 	}
 	
 	
