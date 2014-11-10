@@ -73,10 +73,8 @@ public class App
        	
        	try{
        	session.persist(sub);
-     //  	session.persist(sub1);
-       	}catch(Exception e ){
-       		session.beginTransaction().rollback();
-       	}
+        
+       	
                 	
        	session.getTransaction().commit();
        	session.close();
@@ -89,15 +87,15 @@ public class App
        	
        	
        	
-       	Criteria subCritiria = session.createCriteria(Car.class);
-       	subCritiria.add(Restrictions.eq("manufacturerName", "porshe")); 
+       
+       	Criteria c = session.createCriteria(Subscriber.class, "sub");
+       	c.createAlias("sub.carList", "car");
+       	c.add(Restrictions.eq("car.manufacturerName", "porshe")).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
        	
+       	List<Subscriber> subList = ((List<Subscriber>)c.list());
        	
-       	
-       	List<Car> carList = (List<Car>)subCritiria.list();
-       	
-       	for(Car carName : carList)
-       		System.out.println("The carName is " + carName.getManufacturerName());
+       	for(Subscriber subscriber : subList)
+       		System.out.println("The carName is " + subscriber.getName()) ;
        	
        	
        		
@@ -105,7 +103,9 @@ public class App
        	session.getTransaction().commit();
        	session.close();
        	
-       
+       	}catch(Exception e ){
+       		session.beginTransaction().rollback();
+       	}
     }
 
 	
