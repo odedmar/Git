@@ -3,11 +3,13 @@ package com.jpa.hibernate;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 
 /**
  * Hello world!
@@ -87,12 +89,15 @@ public class App
        	
        	
        	
-       	Query query = session.createQuery("select name from Subscriber  where  name = :userName");
-       	query.setString("userName", "oded");
-       	List<String> sub_nsme = (List<String>)query.list();
+       	Criteria subCritiria = session.createCriteria(Car.class);
+       	subCritiria.add(Restrictions.eq("manufacturerName", "porshe")); 
        	
-       	for(String subName : sub_nsme)
-       		System.out.println("The subscriber name is " + subName);
+       	
+       	
+       	List<Car> carList = (List<Car>)subCritiria.list();
+       	
+       	for(Car carName : carList)
+       		System.out.println("The carName is " + carName.getManufacturerName());
        	
        	
        		
