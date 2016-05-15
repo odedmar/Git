@@ -108,11 +108,8 @@ public class UserService {
 		
 		*/
 		ServiceProviderProfile sp1;
-		try{
-			sp1 = serviceProviderProfile.insert(serviceProviderProvider);
-		}catch(Exception ex){
-			throw new MongoException("dd");
-		}
+		sp1 = serviceProviderProfile.insert(serviceProviderProvider);
+		
 		return sp1.getId();
 	}
 	
