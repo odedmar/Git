@@ -34,7 +34,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
     @Override
 	protected void configure(HttpSecurity http) throws Exception {
-    	
+    	http.authorizeRequests()
+        .antMatchers("**"
+        		).permitAll();  
     	
     	
     	//http.httpBasic();
@@ -43,7 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         
         http.authorizeRequests()
         .antMatchers("/rest/register/serviceprovider").permitAll();
-          
+        
+        
         http
 		.authorizeRequests()
 		.anyRequest().authenticated();
