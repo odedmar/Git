@@ -6,9 +6,12 @@ import static org.springframework.data.mongodb.core.aggregation.Aggregation.newA
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.project;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.sort;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.unwind;
+import static org.springframework.data.mongodb.core.query.Update.update;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -20,6 +23,7 @@ import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
+
 import com.carkyp.controllers.domain.CarReservationDetails;
 import com.carkyp.controllers.domain.PlateNumberdetails;
 import com.carkyp.controllers.domain.PriceDetailSummary;
@@ -28,6 +32,9 @@ import com.carkyp.domain.CarReservationObjects;
 import com.carkyp.domain.PriceDetail;
 import com.carkyp.domain.RetriveCarReservation;
 import com.carkyp.domain.carReservation;
+import com.carkyp.service.provideraccount.model.AdditilasPriceDetails;
+import com.carkyp.service.provideraccount.model.AdditionallDetails;
+import com.carkyp.serviceprovider.domain.Additional;
 import com.carkyp.serviceprovider.domain.ServiceProviderProfile;
 import com.mongodb.WriteResult;
 
@@ -142,6 +149,43 @@ class ServiceProviderProfileRepositoryImpl implements ServiceProviderProfileRepo
 		     List salesReport = groupResults.getMappedResults();
 		     PriceDetailSummary priceSummery = (PriceDetailSummary)salesReport.get(0);
 		return priceSummery;
+	}
+
+	@Override
+	public void setAdditionals(AdditionallDetails additional) {
+		
+		
+		
+		for(AdditilasPriceDetails addtional : additional.getAdditialsPrice() )
+		{
+			Additional add = new Additional(addtional.getName(), addtional.getPrice());
+			
+			mongoTemplate.updateFirst(
+			        Query.query(Criteria.where("id").is(additional.getProviderId())), 
+			        new Update().addToSet("additionalPrice",add), ServiceProviderProfile.class);
+		}
+		
+//		WriteResult wr =mongoTemplate.updateMulti(
+//		        Query.query(Criteria.where("id").is(additional.getProviderId())), 
+//		        new Update().addToSet("additionalPrice",additionalPrice), ServiceProviderProfile.class);
+//		  
+			
+		
+	}
+
+	@Override
+	public void updateAdditionals(AdditionallDetails additional) {
+		
+		
+		for(AdditilasPriceDetails aditional: additional.getAdditialsPrice())
+		{
+			mongoTemplate.findAndModify(new Query(new Criteria().andOperator(
+		    		  Criteria.where("id").is(additional.getProviderId()),
+		    		  Criteria.where("additionalPrice").elemMatch(Criteria.where("name").is(aditional.getName()))
+		    		)),update("additionalPrice.$.price",aditional.getPrice()),  ServiceProviderProfile.class);
+		}
+	  
+		
 	}
 	
 	

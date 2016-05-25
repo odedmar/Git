@@ -26,6 +26,7 @@ import com.carkyp.domain.carReservation;
 import com.carkyp.service.Dispatcher;
 import com.carkyp.service.provider.events.ProviderAccountRegistrationEvent;
 import com.carkyp.service.provider.events.carReservationEvent;
+import com.carkyp.service.provideraccount.model.AdditionallDetails;
 import com.carkyp.service.provideraccount.model.BusinessAccount;
 import com.carkyp.serviceprovider.domain.CarCareReservation;
 
@@ -91,4 +92,13 @@ public class ServiceProviderController {
 		PriceDetailSummary result= dispatcher.getProviderPriceDetails(priceSummeryQuery);
 		return  new ResponseEntity<PriceDetailSummary>(result,HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "rest/addaditionalprice", method = RequestMethod.POST)
+	public ResponseEntity<HttpStatus> addAdditionalPrice(@RequestBody @Valid AdditionallDetails additionalDetails  ){
+		System.out.println("in addAdditionalPrice!!!");
+		dispatcher.addAdditionalPriceDetails(additionalDetails);
+		return  new ResponseEntity<HttpStatus>(HttpStatus.OK);
+	}
+	
+	
 }

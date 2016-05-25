@@ -15,6 +15,7 @@ import com.carkyp.domain.CarReservationObjects;
 import com.carkyp.domain.PriceDetail;
 import com.carkyp.domain.RetriveCarReservation;
 import com.carkyp.domain.carReservation;
+import com.carkyp.service.provideraccount.model.AdditionallDetails;
 import com.carkyp.useraccount.repository.ServiceProviderProfileRepository;
 
 @Service
@@ -47,6 +48,10 @@ public class ProviderService {
 	public PriceDetailSummary getPriceDetailSummery(PriceDetailSummaryQuery pricaDetaillSumQuey){
 		Assert.notNull(pricaDetaillSumQuey);
 		return serviceProviderProfile.getPriceDetailsSummery(pricaDetaillSumQuey);
+	}
+	public void addAditinalPriceDetail(AdditionallDetails additionals){
+		Assert.notNull(additionals);
+		serviceProviderProfile.setAdditionals(additionals);
 	}
 
 }

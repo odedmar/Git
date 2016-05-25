@@ -17,6 +17,7 @@ import static org.springframework.data.mongodb.core.aggregation.Aggregation.sort
 
 
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -51,6 +52,7 @@ import com.carkyp.domain.carReservation;
 import com.carkyp.service.UserService;
 import com.carkyp.serviceprovider.domain.ServiceProviderProfile;
 import com.mongodb.Mongo;
+import com.mongodb.WriteResult;
 
 public class MongoApp {
 
@@ -62,9 +64,32 @@ public class MongoApp {
 //		DateTime endDate = formatter.parseDateTime("01/06/1997");
 //	  
 	  
-    MongoOperations mongoOps = new MongoTemplate(new Mongo(), "sec");
+    MongoOperations mongoOps = new MongoTemplate(new Mongo(), "carkyp");
+    
+     mongoOps.findAndModify(new Query(new Criteria().andOperator(
+    		  Criteria.where("id").is("5744bb66b6e3a3fa988aeec7"),
+    		  Criteria.where("additionalPrice").elemMatch(Criteria.where("name").is("fff"))
+    		)),update("additionalPrice.$.price",10),  ServiceProviderProfile.class);
+    		
+    //		System.out.println("print!!!!!!!! = " + p.get(0));
+    		
+//    		
+//	        Query.query(Criteria.where("id").is("5744b915b6e37363f8f505a2").
+//	        		and("additionalPrice.name").is("fff")), 
+//	        new Update().set("additionalPrice.price", "10"), ServiceProviderProfile.class);
+    
+//    ServiceProviderProfile p =  mongoOps.findOne(
+//    		new Query( Criteria.where("_id").is("5744b915b6e37363f8f505a2")),
+//    	   Criteria.where("additionalPrice").elemMatch(Criteria.where("additionalName").is("fff"))),
+//	        ServiceProviderProfile.class);
+//	// new Update().set("price", "10"),
+
+//     mongoOps.findOne(
+//    		Query.query(Criteria.where("_id").is("57381738b6e3d7c3db241ae5"))
+//    				     				 ,ServiceProviderProfile.class);
+	      //  new Update().set("additionalPrice.price", "10"), ServiceProviderProfile.class);
   //  mongoOps.indexOps(UserProfile.class).ensureIndex(new Index().on("username",Order.ASCENDING));
-    Aggregation aggregation = newAggregation(
+  /*  Aggregation aggregation = newAggregation(
     		unwind("priceDetails"),
     	    match(Criteria.where("priceDetails.serviceType").is("60000")
     	    		.and("priceDetails.carBrand").is("ford")
@@ -81,7 +106,7 @@ public class MongoApp {
      List salesReport = groupResults.getMappedResults();
      System.out.println(salesReport);
     
-
+*/
  //   mongoOps.indexOps(UserProfile.class).ensureIndex(new Index().on("username",Order.ASCENDING));
 //    Aggregation agg = newAggregation(
 //			

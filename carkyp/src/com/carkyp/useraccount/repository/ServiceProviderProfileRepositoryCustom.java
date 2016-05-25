@@ -11,6 +11,8 @@ import com.carkyp.domain.PriceDetail;
 import com.carkyp.domain.RetriveCarReservation;
 import com.carkyp.domain.UserProfile;
 import com.carkyp.domain.carReservation;
+import com.carkyp.service.provideraccount.model.AdditionallDetails;
+import com.carkyp.serviceprovider.domain.Additional;
 import com.carkyp.serviceprovider.domain.CarCareReservation;
 
 interface ServiceProviderProfileRepositoryCustom {
@@ -19,6 +21,8 @@ interface ServiceProviderProfileRepositoryCustom {
 	  public Boolean updateCarDetails(PlateNumberdetails carDetail);
 	  public Boolean SetCarecarePriceDetail(PriceDetail priceDetail);
 	  public PriceDetailSummary getPriceDetailsSummery(PriceDetailSummaryQuery qury);
+	  public void setAdditionals(AdditionallDetails additional);
+	  public void updateAdditionals(AdditionallDetails additional);
 	  
 	  
 	}

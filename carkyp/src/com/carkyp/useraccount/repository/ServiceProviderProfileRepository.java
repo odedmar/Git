@@ -8,6 +8,6 @@ import com.carkyp.serviceprovider.domain.ServiceProviderProfile;
 
 public interface ServiceProviderProfileRepository extends MongoRepository<ServiceProviderProfile, String> 
 , ServiceProviderProfileRepositoryCustom {
-	
+
 	
 }

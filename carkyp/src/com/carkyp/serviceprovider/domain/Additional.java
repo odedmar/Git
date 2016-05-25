@@ -2,38 +2,44 @@ package com.carkyp.serviceprovider.domain;
 
 public class Additional {
 	
-	private String additionalName;
+	private String name;
 	private Double price;
 	
 	public Additional(){}
 	
 	
-	
-	public Additional(String additionalName, Double price) {
+
+	public Additional(String name, Double price) {
 		super();
-		this.additionalName = additionalName;
+		this.name = name;
 		this.price = price;
 	}
 
 
 
-	public final String getAdditionalName() {
-		return additionalName;
+	public final String getName() {
+		return name;
 	}
-	public final void setAdditionalName(String additionalName) {
-		this.additionalName = additionalName;
+
+	public final void setName(String name) {
+		this.name = name;
 	}
+
 	public final Double getPrice() {
 		return price;
 	}
+
 	public final void setPrice(Double price) {
 		this.price = price;
 	}
+
 	@Override
 	public String toString() {
-		return "Additional [additionalName=" + additionalName + ", price="
-				+ price + "]";
+		return "Additional [name=" + name + ", price=" + price + "]";
 	}
+	
+	
+	
 	
 	
 

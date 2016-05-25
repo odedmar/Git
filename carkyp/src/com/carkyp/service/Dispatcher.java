@@ -36,6 +36,8 @@ import com.carkyp.service.provider.events.clientProfileRegistrationEvent;
 
 
 
+import com.carkyp.service.provideraccount.model.AdditionallDetails;
+
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Inbox;
@@ -175,6 +177,13 @@ public class Dispatcher  implements AutoCloseable{
 	{
 		Assert.notNull(priceDetailSumQuery);
 		return providerSrv.getPriceDetailSummery(priceDetailSumQuery);
+		
+	}
+	
+	public void addAdditionalPriceDetails(AdditionallDetails additional)
+	{
+		Assert.notNull(additional);
+		providerSrv.addAditinalPriceDetail(additional);
 		
 	}
 	

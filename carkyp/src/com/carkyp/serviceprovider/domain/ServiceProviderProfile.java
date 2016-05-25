@@ -21,6 +21,7 @@ public class ServiceProviderProfile {
 	private UserProfile userProfile;
 	private List<CarCareReservation> careReservation;
 	private List<PriceDetail> priceDetails;
+	private List<Additional> additionalPrice;
 	
 	public ServiceProviderProfile(){}
 	
@@ -28,16 +29,30 @@ public class ServiceProviderProfile {
 	
 	public ServiceProviderProfile(String id, String email,
 			BusinessAccount businessAccount, UserProfile userProfile,
-			List<CarCareReservation> careReservation) {
+			List<CarCareReservation> careReservation,
+			List<PriceDetail> priceDetails, List<Additional> additionalPrice) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.businessAccount = businessAccount;
 		this.userProfile = userProfile;
 		this.careReservation = careReservation;
+		this.priceDetails = priceDetails;
+	 	this.additionalPrice = additionalPrice;
 	}
 
-	
+
+	public final List<Additional> getAdditionalPrice() {
+		return additionalPrice;
+	}
+
+
+
+	public final void setAdditionalPrice(List<Additional> additionalPrice) {
+		this.additionalPrice = additionalPrice;
+	}
+
+
 
 	public final List<PriceDetail> getPriceDetails() {
 		return priceDetails;
@@ -81,12 +96,21 @@ public class ServiceProviderProfile {
 	public final void setCareReservation(List<CarCareReservation> careReservation) {
 		this.careReservation = careReservation;
 	}
+
+
+
+
+
+
 	@Override
 	public String toString() {
 		return "ServiceProviderProfile [id=" + id + ", email=" + email
 				+ ", businessAccount=" + businessAccount + ", userProfile="
-				+ userProfile + ", careReservation=" + careReservation + "]";
+				+ userProfile + ", careReservation=" + careReservation
+				+ ", priceDetails=" + priceDetails + ", additionalPrice=";
+				//+ additionalPrice + "]";
 	}
+	
 	
 	
 
