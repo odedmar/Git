@@ -28,7 +28,9 @@ import com.carkyp.service.provider.events.ProviderAccountRegistrationEvent;
 import com.carkyp.service.provider.events.carReservationEvent;
 import com.carkyp.service.provideraccount.model.AdditionallDetails;
 import com.carkyp.service.provideraccount.model.BusinessAccount;
+import com.carkyp.service.provideraccount.model.ServiceProviderDetails;
 import com.carkyp.serviceprovider.domain.CarCareReservation;
+import com.carkyp.serviceprovider.domain.ServiceProviderProfile;
 
 
 @RestController
@@ -98,6 +100,20 @@ public class ServiceProviderController {
 		System.out.println("in addAdditionalPrice!!!");
 		dispatcher.addAdditionalPriceDetails(additionalDetails);
 		return  new ResponseEntity<HttpStatus>(HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "rest/updateaditionalprice", method = RequestMethod.POST)
+	public ResponseEntity<HttpStatus> updateAdditionalPrice(@RequestBody @Valid AdditionallDetails additionalDetails  ){
+		System.out.println("in addAdditionalPrice!!!");
+		dispatcher.updateAdditionalPriceDetails(additionalDetails);
+		return  new ResponseEntity<HttpStatus>(HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "rest/retreiveproviderprofile", method = RequestMethod.GET)
+	public ResponseEntity<ServiceProviderDetails>  retriveProviderprofile(@RequestParam(value="providerid") String providerid  ){
+		System.out.println("in retriveProviderprofile!!!"+ providerid);
+		ServiceProviderDetails result =dispatcher.retriveProviderProfile(providerid);
+		return new ResponseEntity<ServiceProviderDetails>(result,HttpStatus.OK);
 	}
 	
 	

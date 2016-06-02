@@ -16,6 +16,8 @@ import com.carkyp.domain.PriceDetail;
 import com.carkyp.domain.RetriveCarReservation;
 import com.carkyp.domain.carReservation;
 import com.carkyp.service.provideraccount.model.AdditionallDetails;
+import com.carkyp.service.provideraccount.model.ServiceProviderDetails;
+import com.carkyp.serviceprovider.domain.ServiceProviderProfile;
 import com.carkyp.useraccount.repository.ServiceProviderProfileRepository;
 
 @Service
@@ -52,6 +54,20 @@ public class ProviderService {
 	public void addAditinalPriceDetail(AdditionallDetails additionals){
 		Assert.notNull(additionals);
 		serviceProviderProfile.setAdditionals(additionals);
+	}
+	public void updateAditinalPriceDetail(AdditionallDetails additionals){
+		Assert.notNull(additionals);
+		serviceProviderProfile.updateAdditionals(additionals);
+	}
+	public ServiceProviderDetails retriveProviderInformation(String providerid){
+		ServiceProviderProfile providerProfile = serviceProviderProfile.findOne(providerid);
+		ServiceProviderDetails providerDeatils = new ServiceProviderDetails();
+		providerDeatils.setEmail(providerProfile.getEmail());
+		providerDeatils.setAdditionalPrice(providerProfile.getAdditionalPrice());
+		providerDeatils.setBusinessAccount(providerProfile.getBusinessAccount());
+		providerDeatils.setCareReservation(providerProfile.getCareReservation());
+		providerDeatils.setPriceDetails(providerProfile.getPriceDetails());
+		return providerDeatils;
 	}
 
 }

@@ -37,6 +37,8 @@ import com.carkyp.service.provider.events.clientProfileRegistrationEvent;
 
 
 import com.carkyp.service.provideraccount.model.AdditionallDetails;
+import com.carkyp.service.provideraccount.model.ServiceProviderDetails;
+import com.carkyp.serviceprovider.domain.ServiceProviderProfile;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
@@ -184,6 +186,20 @@ public class Dispatcher  implements AutoCloseable{
 	{
 		Assert.notNull(additional);
 		providerSrv.addAditinalPriceDetail(additional);
+		
+	}
+	
+	public void updateAdditionalPriceDetails(AdditionallDetails additional)
+	{
+		Assert.notNull(additional);
+		providerSrv.updateAditinalPriceDetail(additional);
+		
+	}
+	
+	public ServiceProviderDetails retriveProviderProfile(String providerId)
+	{
+		Assert.notNull(providerId);
+		return providerSrv.retriveProviderInformation(providerId);
 		
 	}
 	
